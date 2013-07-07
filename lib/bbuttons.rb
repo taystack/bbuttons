@@ -1,0 +1,1 @@
+Compass::Frameworks.register("bbuttons", :path => "#{File.dirname(__FILE__)}/..")
