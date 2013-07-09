@@ -1,138 +1,107 @@
-// Bbuttons - A palpable lightweight button mixin
-// Taylor Stackpole
-// July 6, 2013
+// Compass modules
+// ---------------
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+@import "compass/css3/images";
 
-@mixin linear-gradient($start, $end) {
-  background-color: $end;
-  background-image: -webkit-gradient(linear, left top, left bottom, from($start), to($end));
-  background-image: -webkit-linear-gradient(top, $start, $end);
-  background-image: -moz-linear-gradient(top, $start, $end);
-  background-image: -ms-linear-gradient(top, $start, $end);
-  background-image: -o-linear-gradient(top, $start, $end);
-  background-image: linear-gradient(top, $start, $end);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='$start', EndColorStr='$end');
-}
-@mixin radial-gradient($start, $end){
-  background: linear-gradient(#000, #FFF);
-}
-
-@mixin left($color: rgba(0,0,0,0.3)) {
-  border: {
-    right: 1px solid $color;
-    top-right-radius: 0;
-    bottom-right-radius: 0;
-  }
-}
-@mixin mid($color: rgba(255, 255, 255, 0.4)) {
-  border: {
-    left: 1px solid lighten($color, 25%);
-    right: 1px solid rgba(0,0,0,0.3);
-    radius: 0;
-  }
-}
-@mixin right($color: rgba(255, 255, 255, 0.4)) {
-  border: {
-    left: 1px solid lighten($color, 25%);
-    bottom-left-radius: 0;
-    top-left-radius: 0;
-  }
-}
-
-@mixin bsimple(
-  $color: #ccc,
-  $font: #333,
-  $shadow: #FFF
-  ) {
-  background: $color;
-  background-repeat: repeat-x;
-  border: none;
-  border-radius: 3px;
-  // border: 1px solid rgba(0,0,0,0.1);
-  color: $font;
-  font: {
-    size: 24px;
-    family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  padding: 8px 14px;
-  text-shadow: 0 0 1px $shadow;
-  @include linear-gradient($color, darken($color, 25%));
-  &:active {
-    text-shadow: 0 0 1px shadow;
-    @include linear-gradient(darken($color, 5%), $color);
-  }
-}
-@mixin bsuper(
-  $color: #999,
-  $font: #333,
-  $shadow: 0 0 3px white
-  ) {
-  background: $color;
-  border: none;
-  border-radius: 2px;
-  color: $font;
-  font: {
-    weight: normal;
-  }
-  padding: 3px 8px;
-  text-shadow: $shadow;
-}
-
+// Variables
+// ---------
+$experimental-support-for-svg: true;
 $blue-bbutton: #545FDD;
-// $yellow-bbutton: #FFAF05;
-$yellow-bbutton: #e5d400;
-// $green-bbutton: #27D505;
-$green-bbutton: #91df97;
+$yellow-bbutton: #E5D400;
+$green-bbutton: #91DF97;
 $teal-bbutton: #0FE5D4;
-// $red-bbutton: #FF4242;
-$red-bbutton: #ee6868;
+$red-bbutton: #EE6868;
+$bbutton-color: #CCC;
+$bbutton-radius: 3px;
+$font-color: #333;
+$simple-shadow: 0 0 1px #FFF;
+$chunky-shadow: 0 0 3px #FFF;
+$chamelion-color: rgba(0,0,0,0.0);
+$chamelion-hover: rgba(0,0,0,0.2);
+$bbutton-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
 
-#bbuttons {
+// Modules
+// -------
+@import "bbuttons/button-styles";
+@import "bbuttons/mixins";
+
+.test {
+  @if lightness(blue) < lightness(green) {
+    background: teal;
+  }
+  @else {
+    background: black;
+  }
+  height: 100px;
+  width: 200px;
+  button {
+    margin: 25px;
+    @include bbutton('bubbly-chamelion', $chamelion-color, white);
+  }
 }
+.test2 {
+  button {
+    margin: 25px;
+    @include bbutton('bubbly-chamelion');
+  }
+}
+.test3 {
+  button {
+    margin: 25px;
+    @include bbutton('simple');
+  }
+}
+
 button.bsimple {
   @include bsimple();
   &.blue {
     background: $blue-bbutton;
     color: white;
     text-shadow: 0 0 2px darken($blue-bbutton, 15%);
-    @include linear-gradient($blue-bbutton, darken($blue-bbutton, 30%));
+    @include blinear-gradient($blue-bbutton, darken($blue-bbutton, 30%));
     &:active {
-      @include linear-gradient(darken($blue-bbutton, 5%), darken($blue-bbutton, 20%));
+      @include blinear-gradient(darken($blue-bbutton, 5%), darken($blue-bbutton, 20%));
     }
   }
   &.green {
     background: $green-bbutton;
     color: white;
     text-shadow: 0 0 2px darken($green-bbutton, 15%);
-    @include linear-gradient($green-bbutton, darken($green-bbutton, 25%));
+    @include blinear-gradient($green-bbutton, darken($green-bbutton, 25%));
     &:active {
-      @include linear-gradient(darken($green-bbutton, 5%), darken($green-bbutton, 10%));
+      @include blinear-gradient(darken($green-bbutton, 5%), darken($green-bbutton, 10%));
     }
   }
   &.yellow {
     background: $yellow-bbutton;
     color: white;
     text-shadow: 0 0 2px darken($yellow-bbutton, 15%);
-    @include linear-gradient($yellow-bbutton, darken($yellow-bbutton, 10%));
+    @include blinear-gradient($yellow-bbutton, darken($yellow-bbutton, 10%));
     &:active {
-      @include linear-gradient(darken($yellow-bbutton, 5%), $yellow-bbutton);
+      @include blinear-gradient(darken($yellow-bbutton, 5%), $yellow-bbutton);
     }
   }
   &.teal {
     background: $teal-bbutton;
     color: white;
     text-shadow: 0 0 2px darken($teal-bbutton, 15%);
-    @include linear-gradient($teal-bbutton, darken($teal-bbutton, 15%));
+    @include blinear-gradient($teal-bbutton, darken($teal-bbutton, 15%));
     &:active {
-      @include linear-gradient(darken($teal-bbutton, 5%), $teal-bbutton);
+      @include blinear-gradient(darken($teal-bbutton, 5%), $teal-bbutton);
     }
   }
   &.red {
     background: $red-bbutton;
     color: white;
     text-shadow: 0 0 2px darken($red-bbutton, 15%);
-    @include linear-gradient($red-bbutton, darken($red-bbutton, 20%));
+    @include blinear-gradient($red-bbutton, darken($red-bbutton, 20%));
     &:active {
-      @include linear-gradient(darken($red-bbutton, 20%), $red-bbutton);
+      @include blinear-gradient(darken($red-bbutton, 20%), $red-bbutton);
     }
   }
   &.small {
