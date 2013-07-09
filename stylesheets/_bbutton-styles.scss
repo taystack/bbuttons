@@ -1,0 +1,126 @@
+@mixin bbutton(
+  $type: 'simple',
+  $color: $bbutton-color,
+  $font: $font-color,
+  $radius: $bbutton-radius,
+  $shadow: $simple-shadow
+  ) {
+  @if $type == 'simple' {
+    @include bsimple($color, $font, $radius, $shadow);
+  }
+  @else if $type == 'bubbly' {
+    @include bbubbly($color, $font, $radius, $shadow);
+  }
+  @else if $type == 'chunky' {
+    @include bchunky($solor, $font, $radius, $shadow);
+  }
+  @else if $type == 'simple-chamelion' {
+    @include bsimple($chamelion-color, $font, $radius, $shadow);
+    @include bchamelion;
+  }
+  @else if $type == 'bubbly-chamelion' {
+    @include bbubbly($chamelion-color, $font, $radius, $shadow);
+    @include bchamelion('bubbly');
+  }
+  @else if $type == 'chunky-chamelion' {
+    @include bchunky($chamelion-color, $font, $radius, $shadow);
+    @include bchamelion('chunky');
+  }
+}
+
+@mixin bsimple(
+  $color: $bbutton-color,
+  $font: $font-color,
+  $radius: $bbutton-radius,
+  $shadow: $simple-shadow
+  ) {
+  background: $color;
+  border-radius: 3px;
+  border: none;
+  color: $font;
+  padding: {
+    top: 5px;
+    right: 10px;
+    bottom: 6px;
+    left: 10px;
+  }
+  @include bbutton-font(20px);
+  &:hover {
+    background: darken($color, 10%);
+  }
+  &:active {
+    box-shadow: $simple-box-shadow;
+  }
+}
+
+@mixin bbubbly(
+  $color: $bbutton-color,
+  $font: $font-color,
+  $radius: $bbutton-radius,
+  $shadow: $simple-shadow
+  ) {
+  background: $color;
+  background-repeat: repeat-x;
+  border: none;
+  border-radius: 3px;
+  // border: 1px solid rgba(0,0,0,0.1);
+  color: $font;
+  padding: 8px 14px;
+  text-shadow: $shadow;
+  @include bbutton-font;
+  @include blinear-gradient($color, darken($color, 25%));
+  &:hover {
+    @include blinear-gradient(lighten($color, 5%), darken($color, 20%));
+  }
+  &:active {
+    @include blinear-gradient(darken($color, 5%), $color);
+  }
+}
+
+@mixin bchunky(
+  $color: #999,
+  $font: $font-color,
+  $radius: $bbutton-radius,
+  $shadow: $chunky-shadow
+  ) {
+  background: $color;
+  border: none;
+  border-radius: 2px;
+  color: $font;
+  padding: 3px 8px;
+  text-shadow: $shadow;
+  @include bbutton-font;
+}
+
+@mixin bchamelion(
+  $type: 'simple'
+  ) {
+  // background: $chamelion-color;
+  text-shadow: 0 0 1px #333;
+  @include text-shadow(0,0,1px,0,#333);
+  @if $type == 'bubbly' {
+    @include bbutton-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+    &:hover {
+      @include bbutton-gradient(top, rgba(0,0,0,0.07), rgba(0,0,0,0.27), rgba(0,0,0,0.07));
+    }
+    &:active {
+      @include bbutton-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,0.07), rgba(0,0,0,0.1));
+    }
+  }
+  // &:hover {
+  //   background: $chamelion-hover;
+  // }
+  // &:active {
+  //   @if $type == 'bubbly' {
+
+  //   }
+  //   @if $type == 'chunky' {
+
+  //   }
+  //   @else {
+  //     box-shadow: $simple-box-shadow;
+  //   }
+    // @include linear-gradient(darken($color, 25%), $color);
+    // @include single-box-shadow(#333, 0, 2px, 1px, 1px, inset);
+  // }
+}
