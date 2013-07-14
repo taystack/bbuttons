@@ -11,54 +11,70 @@
 @mixin bbutton-gradient($origin, $start, $mid, $end) {
   @include background-image(linear-gradient($origin, $start, $mid, $end));
 }
-@mixin radial-gradient($start, $end){
-  background: linear-gradient($start, $end);
-  background-image: -moz-linear-gradient(bottom, $start, $end);
-  background-image: -moz-linear-gradient(left, $start, $end);
-  background-image: -moz-linear-gradient(right, $start, $end);
-  background-image: -ms-linear-gradient(bottom, $start, $end);
-  background-image: -ms-linear-gradient(left, $start, $end);
-  background-image: -ms-linear-gradient(right, $start, $end);
-  background-image: -o-linear-gradient(bottom, $start, $end);
-  background-image: -o-linear-gradient(left, $start, $end);
-  background-image: -o-linear-gradient(right, $start, $end);
-  background-image: -webkit-gradient(linear, left bottom, right top, from($start), to($end));
-  background-image: -webkit-gradient(linear, left top, right bottom, from($start), to($end));
-  background-image: -webkit-linear-gradient(bottom, $start, $end);
-  background-image: -webkit-linear-gradient(left, $start, $end);
-  background-image: -webkit-linear-gradient(right, $start, $end);
-  background-image: linear-gradient(bottom, $start, $end);
-  background-image: linear-gradient(left, $start, $end);
-  background-image: linear-gradient(right, $start, $end);
-}
 
-@mixin left($color: rgba(0,0,0,0.3)) {
+@mixin button-left($color: rgba(0,0,0,0.3)) {
   border: {
     right: 1px solid $color;
     top-right-radius: 0;
     bottom-right-radius: 0;
   }
 }
-@mixin mid($color: rgba(255, 255, 255, 0.4)) {
+@mixin button-mid($color: rgba(255, 255, 255, 0.4)) {
   border: {
     left: 1px solid lighten($color, 25%);
     right: 1px solid rgba(0,0,0,0.3);
     radius: 0;
   }
+  &:active {
+    border-left: 1px solid rgba(0,0,0,0.3);
+  }
 }
-@mixin right($color: rgba(255, 255, 255, 0.4)) {
+@mixin button-right($color: rgba(255, 255, 255, 0.4)) {
   border: {
     left: 1px solid lighten($color, 25%);
     bottom-left-radius: 0;
     top-left-radius: 0;
   }
+  &:active {
+    border-left: 1px solid rgba(0,0,0,0.3);
+  }
 }
+
+@mixin simple-font (
+  $color: $font-color,
+  $family: $bbutton-font,
+  $size: $default-font-size
+  ) {
+  color: $color;
+  font-family: $family;
+  font-size: $size;
+}
+
 @mixin bbutton-font(
+  $color: $bbutton-color,
+  $font: $font-color,
+  $shadow: $simple-shadow,
   $size: 24px,
   $family: $bbutton-font
   ) {
+  color: $font;
   font: {
     size: $size;
     family: $family;
+  }
+  text-shadow: $shadow;
+  @if lightness($color) < lightness(#888) + lightness(#111) {
+    color: #ddd;
+    text-shadow: 0 -1px #555;
+  }
+}
+
+@mixin test-div($color: white) {
+  display: inline-block;
+  height: 100px;
+  width: 200px;
+  background: $color;
+  button {
+    margin: 25px;
   }
 }
