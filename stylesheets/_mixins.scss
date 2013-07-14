@@ -40,6 +40,19 @@
   }
 }
 
+@mixin double-box-shadow(
+  $double: true
+  ) {
+  @if $double {
+    box-shadow: rgba(255, 255, 255, 0.298039) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.701961) 0px 3px 7px 0px;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.298039) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.701961) 0px 3px 7px 0px;
+  }
+  @else {
+    box-shadow: rgba(0, 0, 0, 0.201961) 0px 1px 2px 0px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.201961) 0px 1px 2px 0px inset;
+  }
+}
+
 @mixin simple-font (
   $color: $font-color,
   $family: $bbutton-font,
@@ -62,11 +75,7 @@
     size: $size;
     family: $family;
   }
-  text-shadow: $shadow;
-  @if lightness($color) < lightness(#888) + lightness(#111) {
-    color: #ddd;
-    text-shadow: 0 -1px #555;
-  }
+  text-shadow: 0 1px rgba(255,255,255,0.25);
 }
 
 @mixin test-div($color: white) {

@@ -13,17 +13,17 @@
   @else if $type == 'chunky' {
     @include bchunky($solor, $font, $radius);
   }
-  @else if $type == 'simple-chamelion' {
-    @include bsimple($chamelion-color, $font, $radius);
-    @include bchamelion;
+  @else if $type == 'simple-chameleon' {
+    @include bsimple($chameleon-color, $font, $radius);
+    @include bchameleon;
   }
-  @else if $type == 'bubbly-chamelion' {
-    @include bbubbly($chamelion-color, $font, $radius);
-    @include bchamelion('bubbly');
+  @else if $type == 'bubbly-chameleon' {
+    @include bbubbly($chameleon-color, $font, $radius);
+    @include bchameleon('bubbly');
   }
-  @else if $type == 'chunky-chamelion' {
-    @include bchunky($chamelion-color, $font, $radius);
-    @include bchamelion('chunky');
+  @else if $type == 'chunky-chameleon' {
+    @include bchunky($chameleon-color, $font, $radius);
+    @include bchameleon('chunky');
   }
 }
 
@@ -73,16 +73,27 @@
 }
 
 @mixin bchunky(
-  $color: #999,
+  $color: $bbutton-color,
   $font: $font-color,
   $radius: $bbutton-radius
   ) {
   background: $color;
-  border: none;
+  background-image: linear-gradient(lighten($color, 10%), $color);
+  border: 1px solid darken($color, 5%);
   border-radius: 2px;
   color: $font;
-  padding: 3px 8px;
-  @include bbutton-font;
+  padding: {
+    top: 6px;
+    left: 10px;
+    right: 10px;
+    bottom: 4px;
+  }
+  @include bbutton-font($color);
+  @include double-box-shadow;
+  &:hover {
+    background: darken($color, 7%);
+    @include double-box-shadow(false);
+  }
 }
 
 @mixin bgoogle(
@@ -124,7 +135,7 @@
   $radius: 3px
   ) {
   background-color: $color;
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(234, 234, 234));
+  background-image: linear-gradient(lighten($color, 10%), $color);
   border: 1px solid rgb(221,221,221);
   border-bottom: 1px solid rgb(197,197,197);
   border-top: 1px solid rgb(221,221,221);
@@ -186,7 +197,7 @@
   }
 }
 
-@mixin bchamelion(
+@mixin bchameleon(
   $type: 'simple'
   ) {
   text-shadow: 0 0 1px #333;

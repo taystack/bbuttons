@@ -1,3 +1,9 @@
+
+// Modules
+// -------
+@import "bbutton-styles";
+@import "mixins";
+
 // Compass modules
 // ---------------
 @import "compass/css3/border-radius";
@@ -7,49 +13,90 @@
 @import "compass/css3/opacity";
 @import "compass/css3/images";
 
+// Variables
+// ---------
+$bbutton-color: #CCC;
+$bbutton-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$bbutton-radius: 3px;
+$blue-bbutton: #545FDD;
+$chameleon-color: rgba(0,0,0,0.0);
+$chameleon-hover: rgba(0,0,0,0.2);
+$default-font-size: 18px;
+$delicious-button-color: rgb(50, 116, 209);
+$delicious-font-family: 'Helvetica Neue', HelveticaNeue, 'Droid Sans', Roboto, Helvetica, sans-serif;
+$delicious-font-size: 16px;
+$experimental-support-for-svg: true;
+$facebook-blue: rgb(91, 116, 168);
+$facebook-box-shadow: 0 1px rgba(0,0,0,0.15);
+$facebook-font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;;
+$facebook-font-size: 11px;
+$facebook-gray-button: rgb(238, 238, 238);
+$facebook-gray-font-color: rgb(51, 51, 51);
+$font-color: #333;
+$github-box-shadow-active: 0 3px 5px rgba(0,0,0,0.2) inset;
+$github-font-color: rgb(51, 51, 51);
+$github-font-family: Helvetica, arial, freesans, clean, sans-serif;
+$github-font-size: 12.8;
+$github-gray: rgb(234, 234, 234);
+$github-text-shadow: 0 1px rgba(255, 255, 255, 0.9);
+$google-blue-active: 0 2px 2px rgba(0,0,0,0.2) inset;
+$google-blue: rgb(77, 144, 254);
+$google-font-color: rgb(68, 68, 68);
+$google-font-family: arial, sans-serif;
+$google-font-size: 12.909090995788574px;
+$google-gray: #f8f8f8;
+$google-shadow-active: 0 1px 2px rgba(0,0,0,0.1) inset;
+$google-shadow-hover: 0 1px 1px rgba(0,0,0,0.1);
+$green-bbutton: #339933;
+$red-bbutton: #990000;
+$simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
+$simple-shadow: 0 1px rgba(255,255,255,0.3);
+$teal-bbutton: #0FE5D4;
+$yellow-bbutton: #E5D400;
+
 // Modules
 // -------
-@import "bbutton-styles";
-@import "mixins";
+@import "bbuttons/button-styles";
+@import "bbuttons/mixins";
 
 .test {
   @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('bubbly-chamelion', $chamelion-color, white);
+    @include bbutton('bubbly-chameleon', $chameleon-color, white);
   }
 }
 .test2 {
   @include test-div(#444);
   button {
-    @include bbutton('bubbly-chamelion', $chamelion-color, white);
+    @include bbutton('bubbly-chameleon', $chameleon-color, white);
   }
 }
 .test3 {
   @include test-div;
   @include bbutton-gradient(left, maroon, orange, navy);
   button {
-    @include bbutton('bubbly-chamelion', $chamelion-color, white);
+    @include bbutton('bubbly-chameleon', $chameleon-color, white);
   }
 }
 .test4 {
   @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('simple-chamelion', $chamelion-color, white);
+    @include bbutton('simple-chameleon', $chameleon-color, white);
   }
 }
 .test5 {
   @include test-div(#444);
   button {
-    @include bbutton('simple-chamelion', $chamelion-color, white);
+    @include bbutton('simple-chameleon', $chameleon-color, white);
   }
 }
 .test6 {
   @include test-div;
   @include bbutton-gradient(left, maroon, orange, navy);
   button {
-    @include bbutton('simple-chamelion', $chamelion-color, white);
+    @include bbutton('simple-chameleon', $chameleon-color, white);
   }
 }
 .top {
