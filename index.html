@@ -10,6 +10,14 @@
     <script type="text/javascript" src="javascripts/drop.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".button-drop").click(function(event) {
+        var id = event.target.id;
+        return $("button[id=" + id + "] ~ ul").toggle();
+      });
+    });
+    </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -21,12 +29,17 @@
   </head>
   <body>
       <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/taystack/bbuttons">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/taystack/bbuttons/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/taystack/bbuttons/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
+      <a name="top"></a>
+        <a class="left" href="https://github.com/taystack/bbuttons">
+          <button class="chameleon">View On GitHub</button>
+        </a>
+        <a class="right" href="https://github.com/taystack/bbuttons/tarball/master">
+          <button class="chameleon">ZIP</button>
+        </a>
+        <a class="right" href="https://github.com/taystack/bbuttons/zipball/master">
+          <button class="chameleon">TAR</button>
+        </a>
+        <span class="right">DOWNLOADS</span>
       </div><!-- end header -->
 
     <div class="wrapper">
@@ -40,20 +53,227 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>
-<a name="buttons-with-bbuttons" class="anchor" href="#buttons-with-bbuttons"><span class="octicon octicon-link"></span></a>Buttons with bbuttons!</h3>
+      <h2>
+        <a name="buttons-with-bbuttons" class="anchor" href="#buttons-with-bbuttons"><span class="octicon octicon-link"></span></a>Buttons with bbuttons!
+      </h2>
 
-<p>Bbuttons is available as a rubygem.
-If you have ruby installed on your machine, then run the command;</p>
+      <a href="#installation">Installation</a>
+      <div/>
+      <a href="#starting">Getting started</a>
+      <div/>
+      <a href="#mixins">The mixins</a>
+      <div/>
+      <a href="#groups">Button group</a>
+      <div/>
+      <a href="#drop">Dropdown</a>
+      <div/>
+      <a href="#glass">Glass button</a>
+      <div/>
+      <a href="#popular">Popular buttons</a>
+      <div/>
 
-<button class="bfacebook"> Test button </button>
+      <h3 class="section"><a name="installation"></a>Installation
+      <span class="to-top"><a href="#top">top</a></span></h3>
 
-<pre><code>$ gem install buttons-0.0.1.gem
-</code></pre>
+      <p>
+        Bbuttons is available as a rubygem.  If you have ruby installed on your machine, then run the command;
+      </p>
+
+      <pre><code>$ gem install bbuttons-0.0.1.gem</code></pre>
+
+      <p>Or if you prefer to use bower (comming soon!);</p>
+
+      <pre><code>$ bower install bbuttons</code></pre>
+
+      <h3 class="section"><a name="starting"></a>Getting started
+      <span class="to-top"><a href="#top">top</a></span></h3>
+
+      <p>
+        Lets start things off with the pre-defined classes you can add to buttons to showcase your ability to integrate this project easily. If you have little experience with HTML and CSS then this is the perfect start.
+      </p>
+
+      <button class="bsimple">Bbutton!</button>
+      <button class="bbubbly">Bbutton!</button>
+      <button class="bchunky">Bbutton!</button>
+      <div class="top"></div>
+      <pre><code>
+        < button <span class="highlight">class="bsimple"</span> >Bbutton!< /button >
+        < button <span class="highlight">class="bbubbly"</span> >Bbutton!< /button >
+        < button <span class="highlight">class="bchunky"</span> >Bbutton!< /button >
+      </code></pre>
+
+      <h3 class="section"><a name="mixins"></a>The mixins
+      <span class="to-top"><a href="#top">top</a></span></h3>
+
+      <p>
+        For the sass enthusiast I recommend using the mixins to their fullest potential. Lets start off with something simple
+      </p>
+
+      <button id="start1" class="bsimple"> I am green </button>
+      <button id="start2" class="bbubbly"> I am green </button>
+      <button id="start3" class="bchunky"> I am green </button>
+      <div class="top"></div>
+      <span class="dim">HTML</span>
+      <pre><code>
+        < button>I am green< /button>
+      </code></pre>
+
+      <span class="dim">SASS</span>
+      <pre><code>
+      <span class="include">@include</span><span class="highlight"> bsimple</span>(#93bd20, #333, 16px, #DDD)
+      <span class="include">@include</span><span class="highlight"> bbubbly</span>(#93bd20, #333, 16px, #DDD)
+      <span class="include">@include</span><span class="highlight"> bchunky</span>(#93bd20, #333, 16px, #DDD)
+      </code></pre>
+      <div class="top"></div>
+
+      <p>
+        Here we call the bsimple class on its own. We pass the button color, text color, font-size and shadow color. There is also a default bbutton mixin to accomplish the same thing
+      </p>
+
+      <button id="orange1"> I am orange </button>
+      <button id="orange2"> I am orange </button>
+      <button id="orange3"> I am orange </button>
+      <div class="top"></div>
+
+      <span class="dim">HTML</span>
+      <pre><code>
+        < button>I am orange< /button>
+      </code></pre>
+
+      <span class="dim">SASS</span>
+      <pre><code>
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( simple, #ba5200, white, 16px, black)
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( bubbly, #ba5200, white, 16px, black)
+      </code></pre>
+
+      <h3 class="section"><a name="groups"></a>Button group
+      <span class="to-top"><a href="#top">top</a></span></h3>
+
+      <p>
+        No button package would be complete without a mixin for a button group.
+      </p>
+
+      <div class="button-group">
+        <button class="g1">Left</button>
+        <button class="g2">Mid</button>
+        <button class="g3">Right</button>
+      </div>
+      <div class="top"></div>
+
+      <span class="dim">HTML</span>
+      <pre><code>
+      < div <span class="highlight"> class="button-group"</span> >
+          < button <span class="highlight"> class="someclass"</span> > Left < /button>
+          < button <span class="highlight"> class="someclass"</span> > Mid < /button>
+          < button <span class="highlight"> class="someclass"</span> > Right < /button>
+      < /div>
+      </code></pre>
+
+      <span class="dim">SASS</span>
+      <pre><code>
+      <span class="class-highlight">.button-group button</span>
+          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbubbly</span>( #985ab6, white, 16px, #333 )
+      </code></pre>
+
+      <h3 class="section"><a name="drop"></a>Dropdown
+      <span class="to-top"><a href="#top">top</a></span></h3>
+
+      <p>
+        Everyone loves button dropdowns. You can use these for all kinds of cool things.
+      </p>
+
+      <div class="button-drop">
+        <button id="someid">Dropdown</button>
+        <ul id="thing" class="drop">
+          <li class="header">Some links</li>
+          <li>
+            <a href="#drop">Link</a>
+          </li>
+          <li>
+            <a href="#drop">Go somewhere</a>
+          </li>
+          <li>
+            <a href="#drop">Anchor</a>
+          </li>
+        </ul>
+      </div>
+      <div class="top"></div>
+
+      <span class="dim">HTML</span>
+      <pre><code>
+      < div <span class="highlight"> class="button-drop"</span> >
+          < button <span class="highlight"> id="someid"</span> > Dropdown < /button>
+          < li <span class="highlight"> class="header"</span> > Some links < /li>
+          < li>
+              < a <span class="highlight">href="#"</span> Link < /a>
+          < /li>
+          < li>
+              < a <span class="highlight">href="#"</span> Go somewhere < /a>
+          < /li>
+          < li>
+              < a <span class="highlight">href="#"</span> Anchor < /a>
+          < /li>
+      < /div>
+      </code></pre>
+
+      <span class="dim">SASS</span>
+      <pre><code>
+      <span class="class-highlight">.button-drop button</span>
+          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbubbly</span>( #4369b4, white, 16px, #333 )
+      </code></pre>
+
+      <span class="dim">Trouble? Add this to your < head > tag.</span>
+      <pre><code>
+      < script type="text/javascript">
+      $(document).ready(function() {
+          $(".button-drop").click(function(event) {
+              var id = event.target.id;
+              return $("button[id=" + id + "] ~ ul").toggle();
+          });
+      });
+      < /script>
+      </pre></code>
+
+
+      <h3 class="section"><a name="glass"></a>Glass buttons
+      <span class="to-top"><a href="#top">top</a></span></h3>
+      <p>
+        Use these buttons when you want a button to show off your background. If you want a cool example, look at the buttons at the top of this very page.
+        These buttons must be used as mixins since I don't have a default class for them.
+      </p>
+
+      <button class="glass1">Simple glass</button>
+      <button class="glass2">Bubbly glass</button>
+      <button class="glass3">Chunky glass</button>
+
+
+      <h3 class="section"><a name="popular"></a>Popular buttons
+      <span class="to-top"><a href="#top">top</a></span></h3>
+      <p>
+        These buttons can be used when you want the look or feel of your favorite sites.
+      </p>
+
+      <button class="bgoogle">Google!</button>
+      <button class="bgoogle blue">Google blue!</button>
+      <button class="bfacebook">Facebook!</button>
+      <button class="bgithub">GitHub!</button>
+      <button class="bgithub invert">GitHub danger!</button>
+      <button class="bdelicious">Delicious!</button>
+      <div class="top"></div>
+
+      <pre><code>
+        < button <span class="highlight">class="bgoogle"</span> >Google!< /button >
+        < button <span class="highlight">class="bgoogle blue"</span> >Google blue!< /button >
+        < button <span class="highlight">class="bfacebook"</span> >Facebook!< /button >
+        < button <span class="highlight">class="bgithub"</span> >GitHub!< /button >
+        < button <span class="highlight">class="bgithub danger"</span> >GitHub invert!< /button >
+        < button <span class="highlight">class="bdelicious"</span> >Delicious!< /button >
+      </code></pre>
+
       </section>
-
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
 
   </body>
 </html>
