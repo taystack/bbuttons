@@ -239,12 +239,20 @@
       <span class="to-top"><a href="#top">top</a></span></h3>
       <p>
         Use these buttons when you want a button to show off your background. If you want a cool example, look at the buttons at the top of this very page.
-        These buttons must be used as mixins since I don't have a default class for them.
+        These buttons must be used as mixins since I don't yet have a default class for them.
       </p>
 
       <button class="glass1">Simple glass</button>
       <button class="glass2">Bubbly glass</button>
       <button class="glass3">Chunky glass</button>
+      <div class="top"></div>
+
+      <span class="dim">SASS</span>
+      <pre><code>
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( <span class="yellow">'simple-glass'</span> , #4369b4, white, 16px, #333 )
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( <span class="yellow">'bubbly-glass'</span> , #4369b4, white, 16px, #333 )
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( <span class="yellow">'chunky-glass'</span> , #4369b4, white, 16px, #333 )
+      </code></pre>
 
 
       <h3 class="section"><a name="popular"></a>Popular buttons
