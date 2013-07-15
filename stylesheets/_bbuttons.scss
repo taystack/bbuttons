@@ -19,8 +19,8 @@ $bbutton-color: #CCC;
 $bbutton-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $bbutton-radius: 3px;
 $blue-bbutton: #545FDD;
-$chameleon-color: rgba(0,0,0,0.0);
-$chameleon-hover: rgba(0,0,0,0.2);
+$glass-color: rgba(0,0,0,0.0);
+$glass-hover: rgba(0,0,0,0.2);
 $default-font-size: 18px;
 $delicious-button-color: rgb(50, 116, 209);
 $delicious-font-family: 'Helvetica Neue', HelveticaNeue, 'Droid Sans', Roboto, Helvetica, sans-serif;
@@ -50,7 +50,7 @@ $google-shadow-hover: 0 1px 1px rgba(0,0,0,0.1);
 $green-bbutton: #339933;
 $red-bbutton: #990000;
 $simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
-$simple-shadow: 0 1px rgba(255,255,255,0.3);
+$simple-shadow: rgba(255,255,255,0.25);
 $teal-bbutton: #0FE5D4;
 $yellow-bbutton: #E5D400;
 
@@ -63,40 +63,40 @@ $yellow-bbutton: #E5D400;
   @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('bubbly-chameleon', $chameleon-color, white);
+    @include bbutton('bubbly-glass', $glass-color, white);
   }
 }
 .test2 {
   @include test-div(#444);
   button {
-    @include bbutton('bubbly-chameleon', $chameleon-color, white);
+    @include bbutton('bubbly-glass', $glass-color, white);
   }
 }
 .test3 {
   @include test-div;
   @include bbutton-gradient(left, maroon, orange, navy);
   button {
-    @include bbutton('bubbly-chameleon', $chameleon-color, white);
+    @include bbutton('bubbly-glass', $glass-color, white);
   }
 }
 .test4 {
   @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('simple-chameleon', $chameleon-color, white);
+    @include bbutton('simple-glass', $glass-color, white);
   }
 }
 .test5 {
   @include test-div(#444);
   button {
-    @include bbutton('simple-chameleon', $chameleon-color, white);
+    @include bbutton('simple-glass', $glass-color, white);
   }
 }
 .test6 {
   @include test-div;
   @include bbutton-gradient(left, maroon, orange, navy);
   button {
-    @include bbutton('simple-chameleon', $chameleon-color, white);
+    @include bbutton('simple-glass', $glass-color, white);
   }
 }
 .top {
@@ -121,6 +121,9 @@ button.bgoogle.blue {
 }
 button.bgithub {
   @include bgithub;
+}
+button.bgithub.invert {
+  @include bgithub($github-gray, #b33630, true);
 }
 button.bfacebook {
   @include bfacebook;
@@ -154,15 +157,15 @@ button.bdelicious {
 .button-group {
   width: auto;
   display: inline-block;
-  .left {
-    @include button-left;
-    float: left;
-  }
-  .mid {
+  > button {
     @include button-mid;
     float: left;
   }
-  .right {
+  button:first-child {
+    @include button-left;
+    float: left;
+  }
+  button:last-child {
     @include button-right;
     float: left;
   }
@@ -172,15 +175,16 @@ button.bdelicious {
 .button-drop {
   display: inline-block;
   ul {
-    position: absolute;
-    display: none;
     background: rgb(255, 255, 255);
-    border: 1px solid rgba(0,0,0,0.3);
     border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.3);
     box-shadow: 0 1px 3px 1px rgba(0,0,0,0.2);
+    display: none;
     list-style: none;
     margin-left: 0;
     margin-top: 3px;
+    padding-left: 0;
+    position: absolute;
     width: 150px;
     li {
       cursor: pointer;

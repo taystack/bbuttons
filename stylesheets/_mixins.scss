@@ -14,27 +14,34 @@
 
 @mixin button-left($color: rgba(0,0,0,0.3)) {
   border: {
-    right: 1px solid $color;
-    top-right-radius: 0;
-    bottom-right-radius: 0;
+    right: 1px solid $color !important;
+    top-right-radius: 0 !important;
+    bottom-right-radius: 0 !important;
+    top-left-radius: $bbutton-radius !important;
+    bottom-left-radius: $bbutton-radius !important;
   }
+  margin: 0;
 }
 @mixin button-mid($color: rgba(255, 255, 255, 0.4)) {
   border: {
-    left: 1px solid lighten($color, 25%);
-    right: 1px solid rgba(0,0,0,0.3);
-    radius: 0;
+    left: 1px solid lighten($color, 25%) !important;
+    right: 1px solid rgba(0,0,0,0.3) !important;
+    radius: 0 !important;
   }
+  margin: 0;
   &:active {
     border-left: 1px solid rgba(0,0,0,0.3);
   }
 }
 @mixin button-right($color: rgba(255, 255, 255, 0.4)) {
   border: {
-    left: 1px solid lighten($color, 25%);
-    bottom-left-radius: 0;
-    top-left-radius: 0;
+    left: 1px solid lighten($color, 25%) !important;
+    top-left-radius: 0 !important;
+    bottom-left-radius: 0 !important;
+    top-right-radius: $bbutton-radius !important;
+    bottom-right-radius: $bbutton-radius !important;
   }
+  margin: 0;
   &:active {
     border-left: 1px solid rgba(0,0,0,0.3);
   }
@@ -66,16 +73,20 @@
 @mixin bbutton-font(
   $color: $bbutton-color,
   $font: $font-color,
-  $shadow: $simple-shadow,
   $size: 24px,
-  $family: $bbutton-font
+  $shadow: $simple-shadow,
+  $family: $bbutton-font,
+  $invert: false
   ) {
   color: $font;
   font: {
     size: $size;
     family: $family;
   }
-  text-shadow: 0 1px rgba(255,255,255,0.25);
+  text-shadow: 0 1px $shadow;
+  @if $invert {
+    text-shadow: 0 -1px $shadow;
+  }
 }
 
 @mixin test-div($color: white) {

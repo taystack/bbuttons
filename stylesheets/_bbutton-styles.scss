@@ -2,42 +2,45 @@
   $type: 'simple',
   $color: $bbutton-color,
   $font: $font-color,
+  $size: $default-font-size,
+  $shadow: $simple-shadow,
   $radius: $bbutton-radius
   ) {
   @if $type == 'simple' {
-    @include bsimple($color, $font, $radius);
+    @include bsimple($color, $font, $size, $shadow, $radius);
   }
   @else if $type == 'bubbly' {
-    @include bbubbly($color, $font, $radius);
+    @include bbubbly($color, $font, $size, $shadow, $radius);
   }
   @else if $type == 'chunky' {
-    @include bchunky($solor, $font, $radius);
+    @include bchunky($color, $font, $size, $shadow, $radius);
   }
-  @else if $type == 'simple-chameleon' {
-    @include bsimple($chameleon-color, $font, $radius);
-    @include bchameleon;
+  @else if $type == 'simple-glass' {
+    @include bsimple($glass-color, $font, $size, $shadow, $radius);
+    @include bglass;
   }
-  @else if $type == 'bubbly-chameleon' {
-    @include bbubbly($chameleon-color, $font, $radius);
-    @include bchameleon('bubbly');
+  @else if $type == 'bubbly-glass' {
+    @include bbubbly($glass-color, $font, $size, $shadow, $radius);
+    @include bglass('bubbly');
   }
-  @else if $type == 'chunky-chameleon' {
-    @include bchunky($chameleon-color, $font, $radius);
-    @include bchameleon('chunky');
+  @else if $type == 'chunky-glass' {
+    @include bchunky($glass-color, $font, $size, $shadow, $radius);
+    @include bglass('chunky');
   }
 }
 
 @mixin bsimple(
   $color: $bbutton-color,
   $font: $font-color,
+  $font-size: $default-font-size,
+  $shadow: $simple-shadow,
   $radius: $bbutton-radius
   ) {
   background: $color;
   border-radius: $bbutton-radius;
   border: none;
-  color: $font;
   padding: 8px 14px;
-  @include bbutton-font($bbutton-color, $font, none, 24px);
+  @include bbutton-font($bbutton-color, $font, $font-size, $shadow);
   &:hover {
     background: darken($color, 10%);
   }
@@ -49,10 +52,12 @@
 @mixin bbubbly(
   $color: $bbutton-color,
   $font: $font-color,
+  $font-size: $default-font-size,
+  $shadow: $simple-shadow,
   $radius: $bbutton-radius
   ) {
   background: $color;
-  background-repeat: repeat-x;
+  background-image: linear-gradient(lighten($color, 10%), darken($color, 5%));
   border: {
     left: 1px solid rgba(0,0,0,0.2);
     right: 1px solid rgba(0,0,0,0.2);
@@ -60,35 +65,34 @@
     top: 1px solid rgba(0,0,0,0.01);
   }
   border-radius: $radius;
-  color: $font;
   padding: 8px 14px;
-  @include bbutton-font($color, $font);
-  @include blinear-gradient($color, darken($color, 25%));
+  @include bbutton-font($bbutton-color, $font, $font-size, $shadow);
   &:hover {
-    @include blinear-gradient(lighten($color, 5%), darken($color, 20%));
+    background-image: linear-gradient(lighten($color, 5%), $color);
   }
   &:active {
-    @include blinear-gradient(darken($color, 5%), $color);
+    background-image: linear-gradient(darken($color, 5%), lighten($color, 5%));
   }
 }
 
 @mixin bchunky(
   $color: $bbutton-color,
   $font: $font-color,
+  $font-size: $default-font-size,
+  $shadow: $simple-shadow,
   $radius: $bbutton-radius
   ) {
   background: $color;
   background-image: linear-gradient(lighten($color, 10%), $color);
   border: 1px solid darken($color, 5%);
-  border-radius: 2px;
-  color: $font;
+  border-radius: $radius;
   padding: {
     top: 6px;
     left: 10px;
     right: 10px;
-    bottom: 4px;
+    bottom: 6px;
   }
-  @include bbutton-font($color);
+  @include bbutton-font($bbutton-color, $font, $font-size, $shadow);
   @include double-box-shadow;
   &:hover {
     background: darken($color, 7%);
@@ -102,7 +106,7 @@
   $radius: 2px
   ) {
   background: $color;
-  border: 1px solid rgba(0,0,0,0.07);
+  border: 1px solid darken($color, 8%);
   border-radius: $radius;
   font-weight: bold;
   padding: {
@@ -114,12 +118,9 @@
   @include simple-font($font, $google-font-family, $google-font-size);
   &:hover {
     cursor: default;
-    background: darken($color, 1%);
-    border: 1px solid rgba(0,0,0,0.2);
+    background: darken($color, 5%);
+    border: 1px solid darken($color, 25%);
     box-shadow: $google-shadow-hover;
-    &.blue {
-      background: darken($color, 5%);
-    }
   }
   &:active {
     box-shadow: $google-shadow-active;
@@ -132,20 +133,30 @@
 @mixin bgithub(
   $color: $github-gray,
   $font: $github-font-color,
+  $invert: false,
+  $size: $github-font-size,
   $radius: 3px
   ) {
   background-color: $color;
   background-image: linear-gradient(lighten($color, 10%), $color);
-  border: 1px solid rgb(221,221,221);
-  border-bottom: 1px solid rgb(197,197,197);
-  border-top: 1px solid rgb(221,221,221);
+  border: 1px solid darken($color, 15%);
+  border-bottom: 1px solid darken($color, 25%);
   border-radius: $radius;
   font-weight: bold;
-  padding: 2px 10px;
+  padding: 4px 10px;
   text-shadow: $github-text-shadow;
-  @include simple-font($font, $github-font-family, $github-font-size);
+  @include simple-font($font, $github-font-family, $size);
   &:hover {
-    background-image: linear-gradient(rgb(240, 240, 240), rgb(220, 220, 220));
+    @if $invert {
+      background: $font;
+      background-image: linear-gradient(lighten($font, 10%), $font);
+      border: 1px solid darken($font, 2%);
+      border-top: 1px solid darken($font, 7%);
+      @include bbutton-font($font, $color, $size, darken($font, 2%), $github-font-family, true);
+    }
+    @else {
+      background-image: linear-gradient(rgb(240, 240, 240), rgb(220, 220, 220));
+    }
   }
   &:active {
     box-shadow: 0 3px 5px rgba(0,0,0,0.2) inset;
@@ -161,8 +172,9 @@
   background: $color;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.2)), to($color),color-stop(0.07, $color));
   border: 1px solid $border-color;
-  font-weight: bold;
   box-shadow: $facebook-box-shadow;
+  font-weight: bold;
+  padding: 5px 16px;
   @include simple-font($font-color, $font-family, $facebook-font-size);
   &.gray {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.2)), to($color),color-stop(0.07, $color));
@@ -197,27 +209,32 @@
   }
 }
 
-@mixin bchameleon(
+@mixin bglass(
   $type: 'simple'
   ) {
-  text-shadow: 0 0 1px #333;
-  @include text-shadow(0,0,1px,0,#333);
   @if $type == 'bubbly' {
-    @include bbutton-gradient(top, rgba(255,255,255,0.2), rgba(255,255,255,0.3), rgba(255,255,255,0.2));
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(0, 0, 0, 0.01);
+    @include bbutton-gradient(top, rgba(255,255,255,0.07), rgba(255,255,255,0.2), rgba(255,255,255,0.07));
     &:hover {
-      @include bbutton-gradient(top, rgba(255,255,255,0.17), rgba(255,255,255,0.27), rgba(255,255,255,0.17));
+      @include bbutton-gradient(top, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
     }
     &:active {
-      @include bbutton-gradient(top, rgba(255,255,255,0.2), rgba(255,255,255,0.17), rgba(255,255,255,0.2));
+      @include bbutton-gradient(top, rgba(255,255,255,0.15), rgba(255,255,255,0.07), rgba(255,255,255,0.15));
     }
   }
-  @else {
+  @else if $type == 'chunky' {
     background: rgba(255,255,255,0.1);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.2)), to($glass-color),color-stop(0.03, $glass-color));
+    border: 1px solid rgba(255,255,255,0.1);
     &:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
     }
-    &:active {
-      box-shadow: 0 0 3px 1px rgba(255,255,255,0.3) inset;
+  }
+  @else if $type == 'simple' {
+    background: rgba(255,255,255,0.07);
+    &:hover {
+      background: rgba(255,255,255,0.08);
     }
   }
 }
