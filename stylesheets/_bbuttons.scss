@@ -3,7 +3,6 @@
 // -------
 @import "bbutton-styles";
 @import "mixins";
-
 // Compass modules
 // ---------------
 @import "compass/css3/border-radius";
@@ -174,24 +173,21 @@ button.bdelicious {
 // Button dropdown
 .button-drop {
   display: inline-block;
+  @include dropdown-style('simple', skyblue, 3px, 10px);
   ul {
-    background: rgb(255, 255, 255);
-    border-radius: 5px;
-    border: 1px solid rgba(0,0,0,0.3);
-    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.2);
-    display: none;
+    display: block;
+    font-family: $bbutton-font;
     list-style: none;
     margin-left: 0;
     margin-top: 3px;
-    padding-left: 0;
     position: absolute;
     width: 150px;
     li {
       cursor: pointer;
-      font-size: 12px;
-      line-height: 16px;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 14px;
+      line-height: 18px;
       a {
+        color: #444;
         display: block;
         margin: 0;
         padding: 8px 0px 8px 8px;
@@ -199,25 +195,10 @@ button.bdelicious {
         width: 100%;
       }
       &.header {
-        background-image: linear-gradient(rgb(250, 250, 250), rgb(234, 234, 234));
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        cursor: default;
         font-weight: bold;
+        font-size: 16px;
         padding: 8px 0px 8px 8px;
-        text-shadow: 0 1px white;
-        &:hover {
-          background-image: linear-gradient(rgb(250, 250, 250), rgb(234, 234, 234)) !important;
-        }
-      }
-      &:hover {
-        background: #364dfb;
-        a {color: white;}
-      }
-      &:first-child {
-        border-radius: 5px 5px 0 0;
-      }
-      &:last-child {
-        border-radius: 0 0 5px 5px;
-        border-bottom: none;
       }
     }
   }
