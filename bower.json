@@ -1,7 +1,7 @@
 {
   "name": "Bbuttons",
   "description": "Small, palpable button mixin.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": ["bbutton", "bbuttons"],
   "homepage": "http://taystack.github.io/bbuttons/",
   "author": {
@@ -14,5 +14,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/taystack/bbuttons"
-  }
+  },
+  "ignore": [
+    ".jshintrc",
+    "**/*.sh"
+  ],
 }
