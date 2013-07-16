@@ -1,22 +1,11 @@
 {
-  "name": "Bbuttons",
-  "description": "Small, palpable button mixin.",
+  "name": "bbuttons",
   "version": "0.0.2",
-  "keywords": ["bbutton", "bbuttons"],
-  "homepage": "http://taystack.github.io/bbuttons/",
-  "author": {
-    "name": "Taylor Stackpole",
-    "email": "tay.stack@gmail.com"
-    },
-  "dependencies": {
-    "jquery": "latest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/taystack/bbuttons"
-  },
+  "main": "templates/project/bbuttons.scss",
   "ignore": [
-    ".jshintrc",
     "**/*.sh"
   ],
+  "dependencies": {
+    "jquery": "2.0.x"
+  }
 }
