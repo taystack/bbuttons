@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <link rel="stylesheet" href="stylesheets/bbuttons.css">
+    <link rel="stylesheet" href="stylesheets/bbutton-style.css">
+    <link rel="stylesheet" href="stylesheets/additions.css">
     <script type="text/javascript" src="javascripts/drop.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
+    <!-- // Imbedded dropdown shim. -->
     <script type="text/javascript">
     $(document).ready(function() {
       $(".button-drop").click(function(event) {
@@ -32,6 +35,9 @@
       <a name="top"></a>
         <a class="left" href="https://github.com/taystack/bbuttons">
           <button class="chameleon">View On GitHub</button>
+        </a>
+        <a class="left" href="pages/mixins.html">
+          <button class="chameleon">Mixin documentation</button>
         </a>
         <a class="right" href="https://github.com/taystack/bbuttons/tarball/master">
           <button class="chameleon">ZIP</button>
@@ -61,7 +67,7 @@
       <div/>
       <a href="#starting">Getting started</a>
       <div/>
-      <a href="#mixins">The mixins</a>
+      <a href="#mixins">Getting started with the mixins</a>
       <div/>
       <a href="#groups">Button group</a>
       <div/>
@@ -89,13 +95,14 @@
       <span class="to-top"><a href="#top">top</a></span></h3>
 
       <p>
-        Lets start things off with the pre-defined classes you can add to buttons to showcase your ability to integrate this project easily. If you have little experience with HTML and CSS then this is the perfect start.
+        Lets start things off with the pre-defined classes you can add to button tags to showcase your ability to integrate this project easily. If you have little experience with HTML and CSS then this is the perfect start.
       </p>
 
       <button class="bsimple">Bbutton!</button>
       <button class="bbubbly">Bbutton!</button>
       <button class="bchunky">Bbutton!</button>
       <div class="top"></div>
+      <span class="dim">HTML</span>
       <pre><code>
         < button <span class="highlight">class="bsimple"</span> >Bbutton!< /button >
         < button <span class="highlight">class="bbubbly"</span> >Bbutton!< /button >
@@ -106,7 +113,14 @@
       <span class="to-top"><a href="#top">top</a></span></h3>
 
       <p>
-        For the sass enthusiast I recommend using the mixins to their fullest potential. Lets start off with something simple
+        For a full list of mixins I recommend checking out the <a href="#">mixin library</a>
+      </p>
+
+      <a name="bbutton-bsimple"></a>
+      <a name="bbutton-bbubbly"></a>
+      <a name="bbutton-bchunky"></a>
+      <p>
+        For the sass enthusiast I recommend using the mixins to their fullest potential. Lets start off with something simple;
       </p>
 
       <button id="start1" class="bsimple"> I am green </button>
@@ -126,6 +140,7 @@
       </code></pre>
       <div class="top"></div>
 
+      <a name="bbutton-default"></a>
       <p>
         Here we call the bsimple class on its own. We pass the button color, text color, font-size and shadow color. There is also a default bbutton mixin to accomplish the same thing
       </p>
@@ -144,6 +159,7 @@
       <pre><code>
       <span class="include">@include</span><span class="highlight"> bbutton</span>( simple, #ba5200, white, 16px, black)
       <span class="include">@include</span><span class="highlight"> bbutton</span>( bubbly, #ba5200, white, 16px, black)
+      <span class="include">@include</span><span class="highlight"> bbutton</span>( chunky, #ba5200, white, 16px, black)
       </code></pre>
 
       <h3 class="section"><a name="groups"></a>Button group
@@ -181,10 +197,11 @@
       <p>
         Everyone loves button dropdowns. You can use these for all kinds of cool things.
       </p>
+      <div class="top"></div>
 
-      <div class="button-drop">
-        <button id="someid">Dropdown</button>
-        <ul id="thing" class="drop">
+      <div id="simple" class="button-drop">
+        <button id="one" class="bsimple">Dropdown</button>
+        <ul class="drop">
           <li class="header">Some links</li>
           <li>
             <a href="#drop">Link</a>
@@ -197,6 +214,39 @@
           </li>
         </ul>
       </div>
+
+      <div id="bubbly" class="button-drop">
+        <button id="two" class="bbubbly">Dropdown</button>
+        <ul class="drop">
+          <li class="header">Some links</li>
+          <li>
+            <a href="#drop">Link</a>
+          </li>
+          <li>
+            <a href="#drop">Go somewhere</a>
+          </li>
+          <li>
+            <a href="#drop">Anchor</a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="chunky" class="button-drop">
+        <button id="three" class="bchunky">Dropdown</button>
+        <ul class="drop">
+          <li class="header">Some links</li>
+          <li>
+            <a href="#drop">Link</a>
+          </li>
+          <li>
+            <a href="#drop">Go somewhere</a>
+          </li>
+          <li>
+            <a href="#drop">Anchor</a>
+          </li>
+        </ul>
+      </div>
+
       <div class="top"></div>
 
       <span class="dim">HTML</span>
@@ -218,8 +268,19 @@
 
       <span class="dim">SASS</span>
       <pre><code>
-      <span class="class-highlight">.button-drop button</span>
-          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbubbly</span>( #4369b4, white, 16px, #333 )
+      <span class="class-highlight">.button-drop</span>
+          <span class="class-highlight">button</span>
+              <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbutton</span>( 'simple', purple, #FFF )
+              <span class="muted">// or</span>
+              <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbutton</span>( 'bubbly', orange, #FFF )
+              <span class="muted">// or</span>
+              <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> bbutton</span>( 'chunky', green, #FFF )
+          <span class="muted">// And add the dropdown-style</span>
+          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> dropdown-style</span>( 'simple', purple, 0, 10px )
+          <span class="muted">// or</span>
+          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> dropdown-style</span>( 'bubbly', orange, 5px, 10px )
+          <span class="muted">// or</span>
+          <span class="class-highlight"></span><span class="include">@include</span><span class="highlight"> dropdown-style</span>( 'chunky', green, 3px, 5px )
       </code></pre>
 
       <span class="dim">Trouble? Add this to your < head > tag.</span>
@@ -258,30 +319,64 @@
       <h3 class="section"><a name="popular"></a>Popular buttons
       <span class="to-top"><a href="#top">top</a></span></h3>
       <p>
-        These buttons can be used when you want the look or feel of your favorite sites.
+        These buttons can be used when you want the look or feel of your favorite sites. They also play nice with Bbutton button-groups and dropdowns.
       </p>
 
-      <button class="bgoogle">Google!</button>
-      <button class="bgoogle blue">Google blue!</button>
-      <button class="bfacebook">Facebook!</button>
-      <button class="bgithub">GitHub!</button>
-      <button class="bgithub invert">GitHub danger!</button>
-      <button class="bdelicious">Delicious!</button>
       <div class="top"></div>
 
+      <span class="dim">Google's button</span>
+      <div class="well">
+        <button class="bgoogle">Google!</button>
+      </div>
       <pre><code>
         < button <span class="highlight">class="bgoogle"</span> >Google!< /button >
+      </code></pre>
+
+      <span class="dim">Google's blue button</span>
+      <div class="well">
+       <button class="bgoogle blue">Google blue!</button>
+      </div>
+      <pre><code>
         < button <span class="highlight">class="bgoogle blue"</span> >Google blue!< /button >
+      </code></pre>
+
+      <span class="dim">Facebook's button</span>
+      <div class="well">
+        <button class="bfacebook">Facebook!</button>
+      </div>
+      <pre><code>
         < button <span class="highlight">class="bfacebook"</span> >Facebook!< /button >
+      </code></pre>
+
+      <span class="dim">GitHub's button</span>
+      <div class="well">
+        <button class="bgithub">GitHub!</button>
+      </div>
+      <pre><code>
         < button <span class="highlight">class="bgithub"</span> >GitHub!< /button >
+      </code></pre>
+
+      <span class="dim">GitHub's inverted button</span>
+      <div class="well">
+        <button class="bgithub invert">GitHub danger!</button>
+      </div>
+      <pre><code>
         < button <span class="highlight">class="bgithub danger"</span> >GitHub invert!< /button >
+      </code></pre>
+
+      <span class="dim">Delicious' button</span>
+      <div class="well">
+        <button class="bdelicious">Delicious!</button>
+      </div>
+      <pre><code>
         < button <span class="highlight">class="bdelicious"</span> >Delicious!< /button >
       </code></pre>
 
+
       </section>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
   </body>
 </html>
