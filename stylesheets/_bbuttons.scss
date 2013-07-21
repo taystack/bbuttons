@@ -9,21 +9,46 @@
 
 // Variables
 // ---------
-$experimental-support-for-svg: true;
-$blue-bbutton: #545FDD;
-$yellow-bbutton: #E5D400;
-$green-bbutton: #91DF97;
-$teal-bbutton: #0FE5D4;
-$red-bbutton: #EE6868;
 $bbutton-color: #CCC;
-$bbutton-radius: 3px;
-$font-color: #333;
-$simple-shadow: 0 0 1px #FFF;
-$chunky-shadow: 0 0 3px #FFF;
-$chamelion-color: rgba(0,0,0,0.0);
-$chamelion-hover: rgba(0,0,0,0.2);
 $bbutton-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$bbutton-radius: 3px;
+$blue-bbutton: #545FDD;
+$glass-color: rgba(0,0,0,0.0);
+$glass-hover: rgba(0,0,0,0.2);
+$default-font-size: 18px;
+$delicious-button-color: rgb(50, 116, 209);
+$delicious-font-family: 'Helvetica Neue', HelveticaNeue, 'Droid Sans', Roboto, Helvetica, sans-serif;
+$delicious-font-size: 16px;
+$experimental-support-for-svg: true;
+$facebook-blue: rgb(91, 116, 168);
+$facebook-box-shadow: 0 1px rgba(0,0,0,0.15);
+$facebook-font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;;
+$facebook-font-size: 11px;
+$facebook-gray-button: rgb(238, 238, 238);
+$facebook-gray-font-color: rgb(51, 51, 51);
+$font-color: #333;
+$github-box-shadow-active: 0 3px 5px rgba(0,0,0,0.2) inset;
+$github-font-color: rgb(51, 51, 51);
+$github-font-family: Helvetica, arial, freesans, clean, sans-serif;
+$github-font-size: 12.8;
+$github-gray: rgb(234, 234, 234);
+$github-text-shadow: 0 1px rgba(255, 255, 255, 0.9);
+$google-blue-active: 0 2px 2px rgba(0,0,0,0.2) inset;
+$google-blue: rgb(77, 144, 254);
+$google-font-color: rgb(68, 68, 68);
+$google-font-family: arial, sans-serif;
+$google-font-size: 12.909090995788574px;
+$google-gray: #f8f8f8;
+$google-shadow-active: 0 1px 2px rgba(0,0,0,0.1) inset;
+$google-shadow-hover: 0 1px 1px rgba(0,0,0,0.1);
+$green-bbutton: #339933;
+$red-bbutton: #990000;
 $simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
+$simple-shadow: rgba(255,255,255,0.25);
+$bbutton-shadow: 0 1 $simple-shadow;
+$bbutton-shadow-invert: 0 -1 $simple-shadow;
+$teal-bbutton: #0FE5D4;
+$yellow-bbutton: #E5D400;
 
 // Modules
 // -------
@@ -31,152 +56,146 @@ $simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
 @import "bbuttons/mixins";
 
 .test {
-  @if lightness(blue) < lightness(green) {
-    background: teal;
-  }
-  @else {
-    background: black;
-  }
-  height: 100px;
-  width: 200px;
+  @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('bubbly-chamelion', $chamelion-color, white);
+    @include bbutton('bubbly-glass', $glass-color, white);
   }
 }
 .test2 {
+  @include test-div(#444);
   button {
-    margin: 25px;
-    @include bbutton('bubbly-chamelion');
+    @include bbutton('bubbly-glass', $glass-color, white);
   }
 }
 .test3 {
+  @include test-div;
+  @include bbutton-gradient(left, maroon, orange, navy);
+  button {
+    @include bbutton('bubbly-glass', $glass-color, white);
+  }
+}
+.test4 {
+  @include test-div(teal);
   button {
     margin: 25px;
-    @include bbutton('simple');
+    @include bbutton('simple-glass', $glass-color, white);
   }
 }
+.test5 {
+  @include test-div(#444);
+  button {
+    @include bbutton('simple-glass', $glass-color, white);
+  }
+}
+.test6 {
+  @include test-div;
+  @include bbutton-gradient(left, maroon, orange, navy);
+  button {
+    @include bbutton('simple-glass', $glass-color, white);
+  }
+}
+.top {
+  height: 20px;
+}
 
+// Default bsimple class
 button.bsimple {
-  @include bsimple();
-  &.blue {
-    background: $blue-bbutton;
-    color: white;
-    text-shadow: 0 0 2px darken($blue-bbutton, 15%);
-    @include blinear-gradient($blue-bbutton, darken($blue-bbutton, 30%));
-    &:active {
-      @include blinear-gradient(darken($blue-bbutton, 5%), darken($blue-bbutton, 20%));
-    }
+  @include bsimple;
+}
+button.bbubbly {
+  @include bbubbly;
+}
+button.bchunky {
+  @include bchunky;
+}
+button.bgoogle {
+  @include bgoogle;
+}
+button.bgoogle.blue {
+  @include bgoogle($google-blue, white);
+}
+button.bgithub {
+  @include bgithub;
+}
+button.bgithub.invert {
+  @include bgithub($github-gray, #b33630, true);
+}
+button.bfacebook {
+  @include bfacebook;
+}
+button.bfacebook.gray {
+  @include bfacebook($facebook-gray-button, $facebook-gray-font-color, rgb(136, 136, 136));
+}
+button.bdelicious {
+  @include bdelicious;
+}
+
+// Default size classes
+.small {
+  border-radius: 2px;
+  font: {
+    size: 16px !important;
+    weight: normal;
   }
-  &.green {
-    background: $green-bbutton;
-    color: white;
-    text-shadow: 0 0 2px darken($green-bbutton, 15%);
-    @include blinear-gradient($green-bbutton, darken($green-bbutton, 25%));
-    &:active {
-      @include blinear-gradient(darken($green-bbutton, 5%), darken($green-bbutton, 10%));
-    }
-  }
-  &.yellow {
-    background: $yellow-bbutton;
-    color: white;
-    text-shadow: 0 0 2px darken($yellow-bbutton, 15%);
-    @include blinear-gradient($yellow-bbutton, darken($yellow-bbutton, 10%));
-    &:active {
-      @include blinear-gradient(darken($yellow-bbutton, 5%), $yellow-bbutton);
-    }
-  }
-  &.teal {
-    background: $teal-bbutton;
-    color: white;
-    text-shadow: 0 0 2px darken($teal-bbutton, 15%);
-    @include blinear-gradient($teal-bbutton, darken($teal-bbutton, 15%));
-    &:active {
-      @include blinear-gradient(darken($teal-bbutton, 5%), $teal-bbutton);
-    }
-  }
-  &.red {
-    background: $red-bbutton;
-    color: white;
-    text-shadow: 0 0 2px darken($red-bbutton, 15%);
-    @include blinear-gradient($red-bbutton, darken($red-bbutton, 20%));
-    &:active {
-      @include blinear-gradient(darken($red-bbutton, 20%), $red-bbutton);
-    }
-  }
-  &.small {
-    border-radius: 2px;
-    font: {
-      size: 16px;
-      weight: normal;
-    }
-    padding: 2px 10px;
-  }
-  &.large {
-    border-radius: 4px;
-    font-size: 32px;
-    padding: 12px 19px;
-    + ul {
-      width: 200px;
-    }
-  }
-  &.left {
-    @include left();
-    float: left;
-  }
-  &.right {
-    @include right();
-    float: left;
-  }
-  &.mid {
-    @include mid();
-    float: left;
+  padding: 2px 10px !important;
+}
+.large {
+  border-radius: 4px;
+  font-size: 32px !important;
+  padding: 12px 19px !important;
+  + ul {
+    width: 200px !important;
   }
 }
 
-// set of buttons
-.button-set {
+// Set of buttons
+.button-group {
   width: auto;
   display: inline-block;
-  height: auto;
+  > button {
+    @include button-mid;
+    float: left;
+  }
+  button:first-child {
+    @include button-left;
+    float: left;
+  }
+  button:last-child {
+    @include button-right;
+    float: left;
+  }
 }
+
 // Button dropdown
 .button-drop {
   display: inline-block;
+  // @include dropdown-style('simple', skyblue, 3px, 10px);
   ul {
-    position: fixed;
-    display: none;
-    background: rgb(240, 240, 240);
-    border-radius: 5px;
-    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
+    display: block;
+    font-family: $bbutton-font;
     list-style: none;
     margin-left: 0;
     margin-top: 3px;
+    position: absolute;
     width: 150px;
     li {
-      padding: 5px 10px 5px 10px;
-      font-size: 16px;
-      line-height: 19px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 18px;
       a {
+        color: #444;
+        display: block;
+        margin: 0;
+        padding: 8px 0px 8px 8px;
         text-decoration: none;
+        width: 100%;
       }
-      &.heads-up {
-        background: rgba(0,0,0,0) !important;
-        // border-bottom: 1px solid rgba(0,0,0,0.2);
-        padding: {
-          top: 7px;
-          bottom: 7px;
-        }
-        box-shadow: 0 0px 3px 0px rgba(0,0,0,0.4);
-      }
-      &:hover {
-        background: rgba(0,0,0,0.15);
-      }
-      &:first-child {
-        border-radius: 5px 5px 0 0;
-      }
-      &:last-child {
-        border-radius: 0 0 5px 5px;
+      &.header {
+        cursor: default;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 8px 0px 8px 8px;
       }
     }
   }

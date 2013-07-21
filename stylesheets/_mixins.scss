@@ -11,54 +11,176 @@
 @mixin bbutton-gradient($origin, $start, $mid, $end) {
   @include background-image(linear-gradient($origin, $start, $mid, $end));
 }
-@mixin radial-gradient($start, $end){
-  background: linear-gradient($start, $end);
-  background-image: -moz-linear-gradient(bottom, $start, $end);
-  background-image: -moz-linear-gradient(left, $start, $end);
-  background-image: -moz-linear-gradient(right, $start, $end);
-  background-image: -ms-linear-gradient(bottom, $start, $end);
-  background-image: -ms-linear-gradient(left, $start, $end);
-  background-image: -ms-linear-gradient(right, $start, $end);
-  background-image: -o-linear-gradient(bottom, $start, $end);
-  background-image: -o-linear-gradient(left, $start, $end);
-  background-image: -o-linear-gradient(right, $start, $end);
-  background-image: -webkit-gradient(linear, left bottom, right top, from($start), to($end));
-  background-image: -webkit-gradient(linear, left top, right bottom, from($start), to($end));
-  background-image: -webkit-linear-gradient(bottom, $start, $end);
-  background-image: -webkit-linear-gradient(left, $start, $end);
-  background-image: -webkit-linear-gradient(right, $start, $end);
-  background-image: linear-gradient(bottom, $start, $end);
-  background-image: linear-gradient(left, $start, $end);
-  background-image: linear-gradient(right, $start, $end);
+
+@mixin button-left($color: rgba(0,0,0,0.3)) {
+  border: {
+    right: 1px solid $color !important;
+    top-right-radius: 0 !important;
+    bottom-right-radius: 0 !important;
+    top-left-radius: $bbutton-radius !important;
+    bottom-left-radius: $bbutton-radius !important;
+  }
+  margin: 0;
+}
+@mixin button-mid($color: rgba(255, 255, 255, 0.4)) {
+  border: {
+    left: 1px solid lighten($color, 25%) !important;
+    right: 1px solid rgba(0,0,0,0.3) !important;
+    radius: 0 !important;
+  }
+  margin: 0;
+  &:active {
+    border-left: 1px solid rgba(0,0,0,0.3);
+  }
+}
+@mixin button-right($color: rgba(255, 255, 255, 0.4)) {
+  border: {
+    left: 1px solid lighten($color, 25%) !important;
+    top-left-radius: 0 !important;
+    bottom-left-radius: 0 !important;
+    top-right-radius: $bbutton-radius !important;
+    bottom-right-radius: $bbutton-radius !important;
+  }
+  margin: 0;
+  &:active {
+    border-left: 1px solid rgba(0,0,0,0.3);
+  }
 }
 
-@mixin left($color: rgba(0,0,0,0.3)) {
-  border: {
-    right: 1px solid $color;
-    top-right-radius: 0;
-    bottom-right-radius: 0;
-  }
-}
-@mixin mid($color: rgba(255, 255, 255, 0.4)) {
-  border: {
-    left: 1px solid lighten($color, 25%);
-    right: 1px solid rgba(0,0,0,0.3);
-    radius: 0;
-  }
-}
-@mixin right($color: rgba(255, 255, 255, 0.4)) {
-  border: {
-    left: 1px solid lighten($color, 25%);
-    bottom-left-radius: 0;
-    top-left-radius: 0;
-  }
-}
-@mixin bbutton-font(
-  $size: 24px,
-  $family: $bbutton-font
+@mixin double-box-shadow(
+  $double: true
   ) {
-  font: {
-    size: $size;
-    family: $family;
+  @if $double {
+    box-shadow: rgba(255, 255, 255, 0.298039) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.701961) 0px 3px 7px 0px;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.298039) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.701961) 0px 3px 7px 0px;
+  }
+  @else {
+    box-shadow: rgba(0, 0, 0, 0.201961) 0px 1px 2px 0px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.201961) 0px 1px 2px 0px inset;
+  }
+}
+
+@mixin simple-font (
+  $color: $font-color,
+  $family: $bbutton-font,
+  $size: $default-font-size
+  ) {
+  color: $color;
+  font-family: $family;
+  font-size: $size;
+}
+
+@mixin bbutton-font(
+  $color: $bbutton-color,
+  $font: $font-color,
+  $size: 24px,
+  $shadow: $simple-shadow,
+  $family: $bbutton-font,
+  $invert: false
+  ) {
+  @include simple-font($font, $bbutton-font, $size);
+  text-shadow: 0 1px $shadow;
+  @if $invert {
+    text-shadow: 0 -1px $shadow;
+  }
+}
+
+@mixin dropdown-style (
+  $style: 'simple',
+  $color: $bbutton-color,
+  $radius: $bbutton-radius,
+  $padding: 3px
+  ) {
+  ul {
+    background: $color;
+    padding: $padding;
+    li {
+      background: #FFF;
+    }
+  }
+  @if $style == 'chunky' {
+    ul {
+      border: 1px solid rgba($color, 0.2);
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+      border-radius: $radius + 2;
+      box-shadow: 0 2px 2px rgba(255,255,255,0.5), 0 2px 3px rgba(255,255,255,0.5) inset;
+      li {
+        background: #FFF;
+        border-bottom: 1px solid rgba($color, 0.2);
+        &:first-child {
+          border-radius: $radius $radius 0 0;
+          border-top: 1px solid rgba(0,0,0,0.15) !important;
+        }
+        &:last-child {
+          border-bottom: none;
+          border-radius: 0 0 $radius $radius;
+          box-shadow: 0 2px 2px rgba(255,255,255,0.5);
+        }
+        &:hover {
+          background: rgba(255,255,255,0.9);
+        }
+        &.header {
+          background-image: linear-gradient(lighten($color, 10%), $color);
+          border: 1px solid lighten($color, 10%);
+          color: invert(grayscale($color));
+          text-shadow: 0 1px lighten($color, 10%);
+          &:hover {
+            background-image: linear-gradient(lighten($color, 10%), lighten($color, 5%)) !important;
+          }
+        }
+      }
+    }
+  }
+  @else if $style == 'bubbly' {
+    ul {
+      border-radius: $radius;
+      li {
+        &:hover {
+          background: lighten($color, 20%);
+          background-image: linear-gradient(lighten($color, 20%), lighten($color, 10%));
+        }
+        &.header {
+          background: white;
+          background-image: linear-gradient(lighten($color, 20%), lighten($color, 10%));
+          border-radius: 0px;
+        }
+      }
+    }
+  }
+  // End bubbly
+  @else {
+    ul {
+      border-radius: $radius;
+      box-shadow: 0 2px 2px rgba($color, 0.5);
+      li {
+        $radius: $radius - 2;
+        background: #FFF;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        &:hover {
+          background: rgba(255,255,255,0.95);
+        }
+        &:first-child {
+          border-radius: $radius $radius 0 0;
+        }
+        &:last-child {
+          border-bottom: none;
+          border-radius: 0 0 $radius $radius;
+        }
+        &.header {
+          background: rgba(255,255,255,0.9);
+        }
+      }
+    }
+  }
+  // End simple
+}
+
+@mixin test-div($color: white) {
+  display: inline-block;
+  height: 100px;
+  width: 200px;
+  background: $color;
+  button {
+    margin: 25px;
   }
 }
