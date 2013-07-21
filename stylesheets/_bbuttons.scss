@@ -1,4 +1,9 @@
+// Modules
+// -------
+@import "bbutton-styles";
+@import "mixins";
 // Compass modules
+
 // ---------------
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -199,4 +204,37 @@ button.bdelicious {
       }
     }
   }
+}
+
+.button-drop#simple {
+  margin-left: 250px;
+  button#one {
+    @include bbutton('simple', purple, #FFF);
+  }
+  @include dropdown-style('simple', purple, 0, 10px);
+}
+.button-drop#bubbly {
+  margin-left: 90px;
+  button#two {
+    @include bbutton('bubbly', orange, #FFF);
+  }
+  @include dropdown-style('bubbly', orange, 5px, 10px);
+}
+.button-drop#chunky {
+  margin-left: 90px;
+  button#three {
+    @include bbutton('chunky', green, #FFF);
+  }
+  @include dropdown-style('chunky', green, 3px, 5px);
+}
+
+.blue {
+  background: blue;
+}
+button.bglass {
+  @include bglass;
+}
+
+#bbuttons {
+  background: whitesmoke;
 }

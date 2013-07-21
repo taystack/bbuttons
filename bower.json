@@ -1,0 +1,11 @@
+{
+  "name": "bbuttons",
+  "version": "0.0.2",
+  "main": "templates/project/bbuttons.scss",
+  "ignore": [
+    "**/*.sh"
+  ],
+  "dependencies": {
+    "jquery": "2.0.x"
+  }
+}
