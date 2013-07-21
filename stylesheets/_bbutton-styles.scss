@@ -95,6 +95,9 @@
   @include bbutton-font($bbutton-color, $font, $font-size, $shadow);
   @include double-box-shadow;
   &:hover {
+    background-image: linear-gradient(lighten($color, 15%), lighten($color, 5%));
+  }
+  &:active {
     background: darken($color, 7%);
     @include double-box-shadow(false);
   }
@@ -212,6 +215,20 @@
 @mixin bglass(
   $type: 'simple'
   ) {
+  border: {
+    right-color: rgba(0,0,0,0.25);
+    bottom-color: rgba(0,0,0,0.25);
+    top-color: rgba(255,255,255,0.25);
+    left-color: rgba(255,255,255,0.25);
+  }
+  &:active {
+    border: {
+      left-color: rgba(0,0,0,0.25);
+      top-color: rgba(0,0,0,0.25);
+      bottom-color: rgba(255,255,255,0.25);
+      right-color: rgba(255,255,255,0.25);
+    }
+  }
   @if $type == 'bubbly' {
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-top: 1px solid rgba(0, 0, 0, 0.01);
@@ -220,6 +237,8 @@
       @include bbutton-gradient(top, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
     }
     &:active {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(0, 0, 0, 0.01);
       @include bbutton-gradient(top, rgba(255,255,255,0.15), rgba(255,255,255,0.07), rgba(255,255,255,0.15));
     }
   }

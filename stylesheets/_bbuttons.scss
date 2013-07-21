@@ -3,6 +3,7 @@
 @import "bbutton-styles";
 @import "mixins";
 // Compass modules
+
 // ---------------
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -26,7 +27,7 @@ $delicious-font-size: 16px;
 $experimental-support-for-svg: true;
 $facebook-blue: rgb(91, 116, 168);
 $facebook-box-shadow: 0 1px rgba(0,0,0,0.15);
-$facebook-font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+$facebook-font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;;
 $facebook-font-size: 11px;
 $facebook-gray-button: rgb(238, 238, 238);
 $facebook-gray-font-color: rgb(51, 51, 51);
@@ -49,6 +50,8 @@ $green-bbutton: #339933;
 $red-bbutton: #990000;
 $simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
 $simple-shadow: rgba(255,255,255,0.25);
+$bbutton-shadow: 0 1 $simple-shadow;
+$bbutton-shadow-invert: 0 -1 $simple-shadow;
 $teal-bbutton: #0FE5D4;
 $yellow-bbutton: #E5D400;
 
@@ -172,7 +175,7 @@ button.bdelicious {
 // Button dropdown
 .button-drop {
   display: inline-block;
-  @include dropdown-style('simple', skyblue, 3px, 10px);
+  // @include dropdown-style('simple', skyblue, 3px, 10px);
   ul {
     display: block;
     font-family: $bbutton-font;
@@ -201,4 +204,37 @@ button.bdelicious {
       }
     }
   }
+}
+
+.button-drop#simple {
+  margin-left: 250px;
+  button#one {
+    @include bbutton('simple', purple, #FFF);
+  }
+  @include dropdown-style('simple', purple, 0, 10px);
+}
+.button-drop#bubbly {
+  margin-left: 90px;
+  button#two {
+    @include bbutton('bubbly', orange, #FFF);
+  }
+  @include dropdown-style('bubbly', orange, 5px, 10px);
+}
+.button-drop#chunky {
+  margin-left: 90px;
+  button#three {
+    @include bbutton('chunky', green, #FFF);
+  }
+  @include dropdown-style('chunky', green, 3px, 5px);
+}
+
+.blue {
+  background: blue;
+}
+button.bglass {
+  @include bglass;
+}
+
+#bbuttons {
+  background: whitesmoke;
 }
