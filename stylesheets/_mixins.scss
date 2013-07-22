@@ -86,10 +86,10 @@
 }
 
 @mixin dropdown-style (
-  $style: 'simple',
+  $type: 'simple',
   $color: $bbutton-color,
   $radius: $bbutton-radius,
-  $padding: 3px
+  $padding: $bbutton-radius
   ) {
   ul {
     background: $color;
@@ -98,7 +98,7 @@
       background: #FFF;
     }
   }
-  @if $style == 'chunky' {
+  @if $type == 'chunky' {
     ul {
       border: 1px solid rgba($color, 0.2);
       border-bottom: 1px solid rgba(0,0,0,0.3);
@@ -131,7 +131,7 @@
       }
     }
   }
-  @else if $style == 'bubbly' {
+  @else if $type == 'bubbly' {
     ul {
       border-radius: $radius;
       li {
