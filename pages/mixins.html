@@ -52,6 +52,8 @@
         <a name="buttons-with-bbuttons" class="anchor" href="#buttons-with-bbuttons"><span class="octicon octicon-link"></span></a>Button mixins with bbuttons!
       </h2>
 
+      <a href="#vars">Variables</a>
+      <div/>
       <a href="#bbutton">bbutton</a>
       <div/>
       <a href="#bsimple">bsimple</a>
@@ -65,17 +67,59 @@
       <a href="#dropdown-style">dropdown-style</a>
       <div/>
 
+      <h3 class="section"><a name="vars"></a>Variables
+      <span class="to-top"><a href="#top">top</a></span></h3>
+
+      <pre id="variables">
+$bbutton-color: #CCC;
+$bbutton-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$bbutton-radius: 3px;
+$blue-bbutton: #545FDD;
+$glass-color: rgba(0,0,0,0.0);
+$glass-hover: rgba(0,0,0,0.2);
+$default-font-size: 18px;
+$delicious-button-color: rgb(50, 116, 209);
+$delicious-font-family: 'Helvetica Neue', HelveticaNeue, 'Droid Sans',
+                        Roboto, Helvetica, sans-serif;
+$delicious-font-size: 16px;
+$experimental-support-for-svg: true;
+$facebook-blue: rgb(91, 116, 168);
+$facebook-box-shadow: 0 1px rgba(0,0,0,0.15);
+$facebook-font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+$facebook-font-size: 11px;
+$facebook-gray-button: rgb(238, 238, 238);
+$facebook-gray-font-color: rgb(51, 51, 51);
+$font-color: #333;
+$github-box-shadow-active: 0 3px 5px rgba(0,0,0,0.2) inset;
+$github-font-color: rgb(51, 51, 51);
+$github-font-family: Helvetica, arial, freesans, clean, sans-serif;
+$github-font-size: 12.8;
+$github-gray: rgb(234, 234, 234);
+$github-text-shadow: 0 1px rgba(255, 255, 255, 0.9);
+$google-blue-active: 0 2px 2px rgba(0,0,0,0.2) inset;
+$google-blue: rgb(77, 144, 254);
+$google-font-color: rgb(68, 68, 68);
+$google-font-family: arial, sans-serif;
+$google-font-size: 12.909090995788574px;
+$google-gray: #f8f8f8;
+$google-shadow-active: 0 1px 2px rgba(0,0,0,0.1) inset;
+$google-shadow-hover: 0 1px 1px rgba(0,0,0,0.1);
+$green-bbutton: #339933;
+$red-bbutton: #990000;
+$simple-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2) inset;
+$simple-shadow: rgba(255,255,255,0.25);
+$bbutton-shadow: 0 1 $simple-shadow;
+$bbutton-shadow-invert: 0 -1 $simple-shadow;
+$teal-bbutton: #0FE5D4;
+$yellow-bbutton: #E5D400;
+
+      </pre>
+
       <h3 class="section"><a name="bbutton"></a>bbutton
       <span class="to-top"><a href="../index.html#bbutton-default">examples</a><a href="#top">top</a></span></h3>
 
-      <h4><span class="include">@include</span><span class="class-highlight2"> bbutton</span>( {$type}, {$color}, {$font-color}, {$font-size}, {$font-color}, {$radius} )</h4>
-      <!-- <h4>
-        $type: The type of bbutton type you want to use. Default: bsimple
-        <div />
-        $color: Background color of the button: Default: $bbutton-color
-        <div />
+      <h4><span class="include">@include</span><span class="class-highlight2"> bbutton</span>( {$type}, {$color}, {$font-color}, {$font-size}, {$font-shadow}, {$radius} )</h4>
 
-      </h4> -->
       <table>
         <tr>
           <th>Variable</th>
@@ -83,39 +127,201 @@
         </tr>
         <tr>
           <td>$type</td>
-          <td>'simple' (default)</td>
+          <td>
+            'simple' (default)
+            <div />
+            'bubbly'
+            <div />
+            'chunky'
+            <div />
+            'simple-glass'
+            <div />
+            'bubbly-glass'
+            <div />
+            'chunky-glass'
+          </td>
+        </tr>
+        <tr>
+          <td>$color</td>
+          <td>$bbutton-color (default), Any hex color or rgb(a) value.</td>
+        </tr>
+        <tr>
+          <td>$font-color</td>
+          <td>$font-color (default)</td>
+        </tr>
+        <tr>
+          <td>$font-size</td>
+          <td>$bbutton-font (default)</td>
+        </tr>
+        <tr>
+          <td>$font-shadow</td>
+          <td>$simple-shadow (default)</td>
+        </tr>
+        <tr>
+          <td>$radius</td>
+          <td>$bbutton-radius (default)</td>
+        </tr>
+      </table>
+      <p>This mixin is a shortcut to the other mixin classes. You can change any of these values by editing the <a href="#vars">variables</a> in the _bbuttons.scss file.</p>
+
+      <h3 class="section"><a name="bsimple"></a>bsimple
+      <span class="to-top"><a href="../index.html#mixins">examples</a><a href="#top">top</a></span></h3>
+
+      <h4><span class="include">@include</span><span class="class-highlight2"> bsimple</span>( {$color}, {$font-color}, {$font-size}, {$font-shadow}, {$radius} )</h4>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Options</th>
         </tr>
         <tr>
           <td>$color</td>
           <td>$bbutton-color (default) Any hex color or rgb(a) value.</td>
         </tr>
         <tr>
-          <td>$font-size</td>
-          <td></td>
+          <td>$font-color</td>
+          <td>$font-color (default)</td>
         </tr>
         <tr>
-          <td></td>
+          <td>$font-size</td>
           <td>$bbutton-font (default)</td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
+          <td>$font-shadow</td>
+          <td>$simple-shadow (default)</td>
+        </tr>
+        <tr>
+          <td>$radius</td>
+          <td>$bbutton-radius (default)</td>
         </tr>
       </table>
-
-      <h3 class="section"><a name="bsimple"></a>bsimple
-      <span class="to-top"><a href="../index.html#bbutton-bsimple">examples</a><a href="#top">top</a></span></h3>
+      <p>You can change any of these values by editing the <a href="#vars">variables</a> in the _bbuttons.scss file.</p>
 
       <h3 class="section"><a name="bbubbly"></a>bbubbly
-      <span class="to-top"><a href="../index.html#bbutton-bubbly">examples</a><a href="#top">top</a></span></h3>
+      <span class="to-top"><a href="../index.html#mixins">examples</a><a href="#top">top</a></span></h3>
+
+      <h4><span class="include">@include</span><span class="class-highlight2"> bbubbly</span>( {$color}, {$font-color}, {$font-size}, {$font-shadow}, {$radius} )</h4>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Options</th>
+        </tr>
+        <tr>
+          <td>$color</td>
+          <td>$bbutton-color (default) Any hex color or rgb(a) value.</td>
+        </tr>
+        <tr>
+          <td>$font-color</td>
+          <td>$font-color (default)</td>
+        </tr>
+        <tr>
+          <td>$font-size</td>
+          <td>$bbutton-font (default)</td>
+        </tr>
+        <tr>
+          <td>$font-shadow</td>
+          <td>$simple-shadow (default)</td>
+        </tr>
+        <tr>
+          <td>$radius</td>
+          <td>$bbutton-radius (default)</td>
+        </tr>
+      </table>
+      <p>You can change any of these values by editing the <a href="#vars">variables</a> in the _bbuttons.scss file.</p>
 
       <h3 class="section"><a name="bchunky"></a>bchunky
-      <span class="to-top"><a href="../index.html#bbutton-bchunky">examples</a><a href="#top">top</a></span></h3>
+      <span class="to-top"><a href="../index.html#mixins">examples</a><a href="#top">top</a></span></h3>
+
+      <h4><span class="include">@include</span><span class="class-highlight2"> bchunky</span>( {$color}, {$font-color}, {$font-size}, {$font-shadow}, {$radius} )</h4>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Options</th>
+        </tr>
+        <tr>
+          <td>$color</td>
+          <td>$bbutton-color (default) Any hex color or rgb(a) value.</td>
+        </tr>
+        <tr>
+          <td>$font-color</td>
+          <td>$font-color (default)</td>
+        </tr>
+        <tr>
+          <td>$font-size</td>
+          <td>$bbutton-font (default)</td>
+        </tr>
+        <tr>
+          <td>$font-shadow</td>
+          <td>$simple-shadow (default)</td>
+        </tr>
+        <tr>
+          <td>$radius</td>
+          <td>$bbutton-radius (default)</td>
+        </tr>
+      </table>
+      <p>You can change any of these values by editing the <a href="#vars">variables</a> in the _bbuttons.scss file.</p>
 
       <h3 class="section"><a name="bglass"></a>bglass
       <span class="to-top"><a href="../index.html#bbutton-bglass">examples</a><a href="#top">top</a></span></h3>
 
+      <h4><span class="include">@include</span><span class="class-highlight2"> bglass</span>( {$type} )</h4>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Options</th>
+        </tr>
+        <tr>
+          <td>$type</td>
+          <td>
+            'simple' (default)
+            <div />
+            'bubbly'
+            <div />
+            'chunky'
+          </td>
+        </tr>
+      </table>
+      <p>Although the glass mixin was made for bbutton types, it works on the default button tag. If you are comfrotable editing the _bbutton-styles.scss file, feel free to tromp all over this class.</p>
+
       </section>
+      <h3 class="section"><a name="dropdown-style"></a>dropdown-style
+      <span class="to-top"><a href="../index.html#drop">examples</a><a href="#top">top</a></span></h3>
+
+      <h4><span class="include">@include</span><span class="class-highlight2"> dropdown-style</span>( {$type}, {$color}, {$radius}, {$padding} )</h4>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Options</th>
+        </tr>
+        <tr>
+          <td>$type</td>
+          <td>
+            'simple' (default)
+            <div />
+            'bubbly'
+            <div />
+            'chunky'
+          </td>
+        </tr>
+        <tr>
+          <td>$color</td>
+          <td>$bbutton-color (default)</td>
+        </tr>
+        <tr>
+          <td>$radius</td>
+          <td>$bbutton-radius (default)</td>
+        </tr>
+        <tr>
+          <td>$padding</td>
+          <td>$bbutton-radius (default)</td>
+        </tr>
+      </table>
+      <p>You can change any of these values by editing the <a href="#vars">variables</a> in the _bbuttons.scss file.</p>
+
     </div>
 
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
